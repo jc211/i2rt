@@ -9,18 +9,11 @@ readme = "README.md"
 requires-python = ">=3.10"
 dynamic = ["description"]
 dependencies = [
-    "click<8.2.0",
-    "dm-env==1.6",
     "evdev==1.9.2 ; sys_platform == 'linux'",
-    "mujoco==3.3.5",
     "numpy==2.2.6",
-    "portal==3.7.3",
-    "pygame==2.6.1",
     "python-can==4.5.0",
-    "qpsolvers[quadprog]==4.7.1",
-    "ruckig==0.15.3",
     "threadpoolctl==3.6.0",
-    "tyro==0.9.26",
+    "mujoco==3.3.5"
 ]
 
 [project.optional-dependencies]
