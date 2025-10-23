@@ -3,10 +3,6 @@ from abc import abstractmethod
 from typing import Any, Dict, Protocol, Union, runtime_checkable
 
 import numpy as np
-from dm_env.specs import Array
-
-ActionSpec = Union[Array, Dict[str, "ActionSpec"]]
-"""Action specification for the agent/robot. It also includes the action space for the gripper."""
 
 
 @enum.unique
@@ -81,27 +77,6 @@ class Robot(Protocol):
         """
         raise NotImplementedError
 
-    def joint_pos_spec(self) -> ActionSpec:
-        """Return the action specification for the robot, which includes the gripper."""
-        return Array(
-            shape=(self.num_dofs(),),
-            dtype=np.float32,
-        )
-
-    def joint_state_spec(self) -> ActionSpec:
-        """Return the action specification for the robot, which includes the gripper."""
-        return dict(
-            {
-                "pos": Array(
-                    shape=(self.num_dofs(),),
-                    dtype=np.float32,
-                ),
-                "vel": Array(
-                    shape=(self.num_dofs(),),
-                    dtype=np.float32,
-                ),
-            }
-        )
 
     def get_robot_info(self) -> Dict[str, Any]:
         """Get the robot information, such as kp, kd, joint limits, gripper limits, etc."""
